@@ -1,26 +1,27 @@
 # Platform Administrator Guide
 
-Welcome! This guide helps **Platform Administrators** navigate ESO documentation based on your specific responsibilities.
+This guide helps **Platform Administrators** navigate ESO documentation based on your specific responsibilities.
 
 ## Who is this for?
 
 You're a Platform Administrator if you:
 
-- Install and manage Kubernetes operators and cluster infrastructure
+- Deploy and administrate Kubernetes clusters
+- Install and manage Kubernetes operators
 - Configure cluster-wide resources and multi-tenant environments
 - Ensure security, compliance, and operational standards
-- Provide self-service capabilities to development teams
+- Provide self-service tools to development teams
 
 ## Your Journey with ESO
 
-### 1. Installation & Setup
+### 1. Installation, Setup & Architectural Decisions
 
 **Goal:** Get ESO installed and choose the right deployment model for your organization.
 
 | What you need to do | Where to go |
 |---------------------|-------------|
-| Understand ESO architecture and components | [API Overview](introduction/overview.md) |
 | Install ESO with Helm | [Getting Started](introduction/getting-started.md) |
+| Understand ESO architecture and components | [API Overview](introduction/overview.md) |
 | Choose multi-tenancy model | [Multi-Tenancy Guide](guides/multi-tenancy.md) |
 | Understand your options | [Decision guide below](#quick-decision-guide) |
 
@@ -28,8 +29,6 @@ You're a Platform Administrator if you:
 - **Shared ClusterSecretStore** - Centralized secret management, all teams use your ClusterSecretStore
 - **Managed SecretStore per namespace** - You create isolated SecretStores per team
 - **ESO as a Service** - Teams manage their own SecretStores, you provide the platform
-
-See: [Multi-Tenancy Guide](guides/multi-tenancy.md) for detailed comparisons with diagrams.
 
 ---
 
@@ -48,18 +47,17 @@ See: [Multi-Tenancy Guide](guides/multi-tenancy.md) for detailed comparisons wit
 | Policy enforcement (Kyverno/OPA) | [Policy Engine Best Practices](guides/security-best-practices.md#policy-engine-best-practices) |
 | Understand security model | [Threat Model](guides/threat-model.md) |
 
-**Critical:** ESO can be used for data exfiltration. Always implement NetworkPolicies and policy engines to restrict provider usage.
+**Use:** ESO can be used for data exfiltration. Always implement NetworkPolicies and policy engines (such as OPA Gatekeeper, Kyverno, etc) to restrict unsafe usage.
 
 ---
 
-### 3. ClusterSecretStore Setup
+### 3. Provider Setup
 
-**Goal:** Create and manage cluster-wide secret stores for your teams.
+**Goal:** learn how you can setup any provider (ie AWS Secrets Manager, Hashicorp Vault, etc)
 
 | Task | Documentation |
 |------|---------------|
 | Create ClusterSecretStore | [ClusterSecretStore API](api/clustersecretstore.md) |
-| Restrict access by namespace | [Security Best Practices - Configure Match Conditions](guides/security-best-practices.md#2-configure-clustersecretstore-match-conditions) |
 | Configure provider authentication | See provider-specific guides below |
 
 **Provider setup guides:**
@@ -110,7 +108,7 @@ kubectl describe clustersecretstore <name>
 
 ---
 
-### 6. Provide to Development Teams
+### 6. Resources to Provide to Development Teams
 
 **Goal:** Enable developers to use ESO effectively.
 
