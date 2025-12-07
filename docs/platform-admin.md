@@ -14,16 +14,32 @@ You're a Platform Administrator if you:
 
 ## Your Journey with ESO
 
-### 1. Installation, Setup & Architectural Decisions
+### 1. Capabilties of ESO, providers available
 
-**Goal:** Get ESO installed and choose the right deployment model for your organization.
+**Goal:** Learn which functionalities are available.
 
-| What you need to do | Where to go |
-|---------------------|-------------|
-| Install ESO with Helm | [Getting Started](introduction/getting-started.md) |
-| Understand ESO architecture and components | [API Overview](introduction/overview.md) |
-| Choose multi-tenancy model | [Multi-Tenancy Guide](guides/multi-tenancy.md) |
-| Understand your options | [Decision guide below](#quick-decision-guide) |
+| Feature | When to use | Documentation |
+|---------|-------------|---------------|
+| ExternalSecret | Sync secrets FROM external providers TO Kubernetes Secrets | [ExternalSecret API](api/externalsecret.md) |
+| SecretStore / ClusterSecretStore | Configure connection to external secret providers | [SecretStore](api/secretstore.md), [ClusterSecretStore](api/clustersecretstore.md) |
+| ClusterExternalSecret | Create ExternalSecrets across multiple namespaces from a single resource | [ClusterExternalSecret Guide](guides/clusterexternalsecret.md) |
+| PushSecret | Sync secrets FROM Kubernetes TO external providers (reverse sync) | [PushSecret Guide](guides/pushsecrets.md) |
+| Generators | Generate passwords, keys, UUIDs, etc. instead of fetching from providers | [Generators](guides/generator.md) |
+| Custom resources | Use ESO with ConfigMaps or other custom resources (not just Secrets) | [Targeting Custom Resources](guides/targeting-custom-resources.md) |
+| Template transformations | Transform, merge, or template secret data before creating Kubernetes Secret | [Templating Guide](guides/templating.md) |
+| Data filtering | Select specific fields from external secrets using JSONPath or regex | [Find by Name/Tag](guides/find-by-name-tag.md) |
+
+**Goal:** learn how you can setup any provider (ie AWS Secrets Manager, Hashicorp Vault, etc)
+
+| Task | Documentation |
+|------|---------------|
+| Create ClusterSecretStore | [ClusterSecretStore API](api/clustersecretstore.md) |
+| AWS Secrets Manager integration | [AWS Secrets Manager](provider/aws-secrets-manager.md) |
+| Azure Key Vault integration | [Azure Key Vault](provider/azure-key-vault.md) |
+| Google Secret Manager integration | [Google Secret Manager](provider/google-secrets-manager.md) |
+| HashiCorp Vault integration | [HashiCorp Vault](provider/hashicorp-vault.md) |
+| All 40+ providers | [All 40+ providers](guides/introduction.md) |
+
 
 **Key decisions:**
 - **Shared ClusterSecretStore** - Centralized secret management, all teams use your ClusterSecretStore
@@ -32,7 +48,26 @@ You're a Platform Administrator if you:
 
 ---
 
-### 2. Security Configuration
+### 2. Installation, Setup & Architectural Decisions
+
+**Goal:** Get ESO installed and choose the right deployment model for your organization.
+
+| What you need to do | Description | Documentation |
+|---------------------|-------------|---------------|
+| Install ESO with Helm | Deploy ESO operator in your Kubernetes cluster | [Getting Started](introduction/getting-started.md) |
+| Understand ESO architecture and components | Learn how ESO works and what resources are available | [API Overview](introduction/overview.md) |
+| Choose multi-tenancy model | Decide how teams will use ESO (shared, isolated, self-service) | [Multi-Tenancy Guide](guides/multi-tenancy.md) |
+| Multiple controllers | Run separate ESO instances for different environments/teams | [Controller Classes](guides/controller-class.md) |
+| Understand your options | Review deployment patterns and make architectural decisions | [Decision guide below](#quick-decision-guide) |
+
+**Key decisions:**
+- **Shared ClusterSecretStore** - Centralized secret management, all teams use your ClusterSecretStore
+- **Managed SecretStore per namespace** - You create isolated SecretStores per team
+- **ESO as a Service** - Teams manage their own SecretStores, you provide the platform
+
+---
+
+### 3. Security Configuration
 
 **Goal:** Harden your ESO installation to meet security and compliance requirements.
 
@@ -51,38 +86,7 @@ You're a Platform Administrator if you:
 
 ---
 
-### 3. Provider Setup
-
-**Goal:** learn how you can setup any provider (ie AWS Secrets Manager, Hashicorp Vault, etc)
-
-| Task | Documentation |
-|------|---------------|
-| Create ClusterSecretStore | [ClusterSecretStore API](api/clustersecretstore.md) |
-| Configure provider authentication | See provider-specific guides below |
-
-**Provider setup guides:**
-- [AWS Secrets Manager](provider/aws-secrets-manager.md)
-- [Azure Key Vault](provider/azure-key-vault.md)
-- [Google Secret Manager](provider/google-secrets-manager.md)
-- [HashiCorp Vault](provider/hashicorp-vault.md)
-- [All 40+ providers](guides/introduction.md)
-
----
-
-### 4. Advanced Configuration
-
-**Goal:** Configure advanced features for specific use cases.
-
-| Feature | When to use | Documentation |
-|---------|-------------|---------------|
-| Multiple controllers | Run separate ESO instances for different environments/teams | [Controller Classes](guides/controller-class.md) |
-| PushSecret | Sync secrets FROM Kubernetes TO external providers | [PushSecret Guide](guides/pushsecrets.md) |
-| Custom resources | Use ESO with custom resource types (not just Secrets) | [Targeting Custom Resources](guides/targeting-custom-resources.md) |
-| Generators | Generate passwords, keys, etc. instead of fetching | [Generators](guides/generator.md) |
-
----
-
-### 5. Operations & Maintenance
+### 4. Operations & Maintenance
 
 **Goal:** Keep ESO healthy, monitor it, and troubleshoot issues.
 
@@ -108,7 +112,7 @@ kubectl describe clustersecretstore <name>
 
 ---
 
-### 6. Resources to Provide to Development Teams
+### 5. Resources to Provide to Development Teams (FURther reading for development team)
 
 **Goal:** Enable developers to use ESO effectively.
 
