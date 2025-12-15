@@ -54,6 +54,8 @@ extra:
 nav:
   - Introduction:
       - Introduction: index.md
+      - Personas:
+          - Platform admin: personas/platform-admin.md
       - Overview: introduction/overview.md
       - Glossary: introduction/glossary.md
       - Prerequisites: introduction/prerequisites.md

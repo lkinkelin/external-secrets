@@ -29,6 +29,11 @@ lifecycle of the secrets for you.
 
 ### Where to get started
 
+Depending whether you are a Software Developer, an ESO Maintainer, a Kubernetes Platform Administrator, a Security Specialist, an Architect, an Executive or anything in-between, you may not have the same needs on the learning path of ESO. Here are some persona-oriented docs which will lead you on your learning path of ESO :
+[Platform admin](personas/platform-admin.md)
+[Maintainer]()
+
+
 To get started, please read through [API overview](introduction/overview.md) this should
 give you a high-level overview to understand the API and use-cases. After that
 please follow one of our [guides](guides/introduction.md) to get a jump start
