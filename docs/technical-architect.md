@@ -33,7 +33,7 @@ You're a Technical Architect if you:
 | **Pull Secrets** | Sync secrets FROM external providers TO Kubernetes | Primary use case: Keep K8s secrets in sync with external sources | [ExternalSecret API](api/externalsecret.md) |
 | **Push Secrets** | Sync secrets FROM Kubernetes TO external providers | Reverse sync, backup K8s secrets to external systems | [PushSecret Guide](guides/pushsecrets.md) |
 | **Secret Generation** | Generate passwords, keys, UUIDs without external provider | Self-contained secret generation for development environments | [Generators](guides/generator.md) |
-| **Multi-namespace sync** | Replicate secrets across namespaces from single definition | Shared secrets (TLS certs, registry credentials) across teams | [ClusterExternalSecret](guides/clusterexternalsecret.md) |
+| **Multi-namespace sync** | Sync secrets TO different namespaces FROM single ClusterExternalSecret definition | Shared secrets (TLS certs, registry credentials) across teams | [ClusterExternalSecret](api/clusterexternalsecret.md) |
 | **Data transformation** | Template, merge, filter secret data before K8s Secret creation | Adapt external secret format to application requirements | [Templating](guides/templating.md) |
 | **Custom resources** | Target ConfigMaps or custom resources instead of Secrets | Non-sensitive configuration sync | [Custom Resources](guides/targeting-custom-resources.md) |
 
@@ -113,7 +113,7 @@ See: [Controller Classes](guides/controller-class.md), [Multi-Tenancy Guide](gui
 | **Compliance frameworks** | SOC2, PCI-DSS, HIPAA, GDPR, ISO 27001 requirements | [Security Best Practices](guides/security-best-practices.md) |
 | **Supply chain security** | Signed container images, SBOM, vulnerability scanning | [Verify Artifacts](guides/security-best-practices.md#verify-artefacts) |
 | **Secret encryption** | Encryption at rest (etcd), in transit (TLS) | [Security Best Practices](guides/security-best-practices.md) |
-| **Data residency** | Where ESO components run, data processing locations | [Data Residency & Sovereignty](#data-residency--sovereignty) |
+| **Data residency** | Where ESO components run, data processing locations | [Data Residency & Sovereignty]() |
 | **Complex network topologies** | Multi-LAN, segmented networks, firewall rules | [Network Integration](#network-integration-in-complex-environments) |
 
 #### Key Security Considerations
@@ -383,7 +383,7 @@ See: [FAQ - Performance](introduction/faq.md)
 | **Software licensing** | ESO is Apache 2.0, free to use commercially | [GitHub Repository](https://github.com/external-secrets/external-secrets) |
 | **Infrastructure costs** | K8s resources (CPU/memory), egress traffic costs | [Getting Started](introduction/getting-started.md) |
 | **Provider API costs** | AWS Secrets Manager, GCP Secret Manager API charges | Provider-specific pricing pages |
-| **Compliance costs** | SBOM verification, image scanning, security audits | [Supply Chain Security](#data-residency--sovereignty) |
+| **Compliance costs** | SBOM verification, image scanning, security audits | [Supply Chain Security]() |
 | **Operational overhead** | Team training, maintenance, support | N/A |
 | **Support options** | Community support vs commercial support providers | [Getting Help](#getting-help) |
 
@@ -606,6 +606,6 @@ After completing your evaluation:
 Looking for different information?
 
 - **Platform Administrator** - Installing and operating ESO → [Platform Admin Guide](platform-admin.md)
-- **Application Developer** - Using ESO to sync secrets → [App Developer Guide](app-developer.md) (if exists)
-- **Security Engineer** - Security auditing and compliance → [Security Guide](security-engineer.md) (if exists)
+- **Application Developer** - Using ESO to sync secrets → [App Developer Guide]()
+- **Security Engineer** - Security auditing and compliance → [Security Guide]()
 - **New to ESO** - Just getting started → [Getting Started](introduction/getting-started.md)
