@@ -22,12 +22,12 @@ You're a Platform Administrator if you:
 |---------|-------------|---------------|
 | ExternalSecret | Sync secrets FROM external providers TO Kubernetes Secrets | [ExternalSecret API](api/externalsecret.md) |
 | SecretStore / ClusterSecretStore | Configure connection to external secret providers | [SecretStore](api/secretstore.md), [ClusterSecretStore](api/clustersecretstore.md) |
-| ClusterExternalSecret | Create ExternalSecrets across multiple namespaces from a single resource | [ClusterExternalSecret Guide](guides/clusterexternalsecret.md) |
+| ExternalSecret | Sync multiple secrets FROM external providers TO a single Kubernetes Secret | [Templating Guide](guides/getallsecrets.md) |
+| ClusterExternalSecret | Create ExternalSecrets across multiple namespaces from a single resource | [ClusterExternalSecret Guide](api/clusterexternalsecret.md) |
 | PushSecret | Sync secrets FROM Kubernetes TO external providers (reverse sync) | [PushSecret Guide](guides/pushsecrets.md) |
 | Generators | Generate passwords, keys, UUIDs, etc. instead of fetching from providers | [Generators](guides/generator.md) |
 | Custom resources | Use ESO with ConfigMaps or other custom resources (not just Secrets) | [Targeting Custom Resources](guides/targeting-custom-resources.md) |
-| Template transformations | Transform, merge, or template secret data before creating Kubernetes Secret | [Templating Guide](guides/templating.md) |
-| Data filtering | Select specific fields from external secrets using JSONPath or regex | [Find by Name/Tag](guides/find-by-name-tag.md) |
+| Template transformations | Transform, merge, or template secret data before creating the Kubernetes Secret | [Templating Guide](guides/templating.md) |
 
 **Goal:** learn how you can setup any provider (ie AWS Secrets Manager, Hashicorp Vault, etc)
 
@@ -118,7 +118,7 @@ kubectl describe clustersecretstore <name>
 
 | What to provide | Documentation to share |
 |-----------------|------------------------|
-| Developer guide | [Application Developer Guide](app-developer.md) (if exists) |
+| Developer guide | [Application Developer Guide]() |
 | How to create ExternalSecrets | [API - ExternalSecret](api/externalsecret.md) |
 | Common patterns | [Guides](guides/introduction.md) |
 | Examples | [Examples](examples/) |
@@ -244,6 +244,6 @@ See: [Multi-Tenancy Guide](guides/multi-tenancy.md) for more scenarios.
 
 Not a Platform Administrator? Check these guides:
 
-- **Application Developer** - Using ESO to sync secrets in your applications → [App Developer Guide](app-developer.md) (if exists)
-- **Security Engineer** - Security auditing, compliance, rotation → [Security Guide](security-engineer.md) (if exists)
+- **Application Developer** - Using ESO to sync secrets in your applications → [App Developer Guide]()
+- **Security Engineer** - Security auditing, compliance, rotation → [Security Guide]()
 - **New to ESO** - Just getting started → [Getting Started](introduction/getting-started.md)
